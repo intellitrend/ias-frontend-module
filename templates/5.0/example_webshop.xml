@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2021-04-07T09:56:04Z</date>
+    <groups>
+        <group>
+            <name>IAS/Webshop</name>
+        </group>
+    </groups>
+    <hosts>
+        <host>
+            <host>IAS Webshop - Cache Server 1</host>
+            <name>IAS Webshop - Cache Server 1</name>
+            <templates>
+                <template>
+                    <name>Template Module ICMP Ping</name>
+                </template>
+                <template>
+                    <name>Template App Memcached</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>IAS/Webshop</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS Webshop - Cache Service</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS Webshop - Cache Server 2</host>
+            <name>IAS Webshop - Cache Server 2</name>
+            <templates>
+                <template>
+                    <name>Template Module ICMP Ping</name>
+                </template>
+                <template>
+                    <name>Template App Memcached</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>IAS/Webshop</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS Webshop - Cache Service</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS Webshop - Cache Server 3</host>
+            <name>IAS Webshop - Cache Server 3</name>
+            <templates>
+                <template>
+                    <name>Template Module ICMP Ping</name>
+                </template>
+                <template>
+                    <name>Template App Memcached</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>IAS/Webshop</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS Webshop - Cache Service</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS Webshop - Cache Service</host>
+            <name>IAS Webshop - Cache Service</name>
+            <groups>
+                <group>
+                    <name>IAS/Webshop</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>Number of unavailable servers</name>
+                    <type>TRAP</type>
+                    <key>servers.unavailable</key>
+                    <delay>0</delay>
+                    <units>%</units>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=100</expression>
+                            <name>All cache servers unavailable</name>
+                            <priority>HIGH</priority>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS Webshop - Database Server 1</host>
+            <name>IAS Webshop - Database Server 1</name>
+            <templates>
+                <template>
+                    <name>Template Module ICMP Ping</name>
+                </template>
+                <template>
+                    <name>Template DB MySQL by Zabbix agent</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>IAS/Webshop</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS Webshop - Database Service</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS Webshop - Database Server 2</host>
+            <name>IAS Webshop - Database Server 2</name>
+            <templates>
+                <template>
+                    <name>Template Module ICMP Ping</name>
+                </template>
+                <template>
+                    <name>Template DB MySQL by Zabbix agent</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>IAS/Webshop</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS Webshop - Database Service</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS Webshop - Database Service</host>
+            <name>IAS Webshop - Database Service</name>
+            <groups>
+                <group>
+                    <name>IAS/Webshop</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>Number of unavailable servers</name>
+                    <type>TRAP</type>
+                    <key>servers.unavailable</key>
+                    <delay>0</delay>
+                    <units>%</units>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=100</expression>
+                            <name>All database servers unavailable</name>
+                            <priority>HIGH</priority>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS Webshop - Frontend Server 1</host>
+            <name>IAS Webshop - Frontend Server 1</name>
+            <templates>
+                <template>
+                    <name>Template App Apache by Zabbix agent</name>
+                </template>
+                <template>
+                    <name>Template Module ICMP Ping</name>
+                </template>
+                <template>
+                    <name>Template OS Linux by Zabbix agent active</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>IAS/Webshop</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS Webshop - Frontend Service</value>
+                </tag>
+            </tags>
+            <macros>
+                <macro>
+                    <macro>{$APACHE.STATUS.PORT}</macro>
+                    <value>8080</value>
+                    <description>The port of Apache status page</description>
+                </macro>
+            </macros>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS Webshop - Frontend Server 2</host>
+            <name>IAS Webshop - Frontend Server 2</name>
+            <templates>
+                <template>
+                    <name>Template App Apache by Zabbix agent</name>
+                </template>
+                <template>
+                    <name>Template Module ICMP Ping</name>
+                </template>
+                <template>
+                    <name>Template OS Linux by Zabbix agent active</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>IAS/Webshop</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS Webshop - Frontend Service</value>
+                </tag>
+            </tags>
+            <macros>
+                <macro>
+                    <macro>{$APACHE.STATUS.PORT}</macro>
+                    <value>8080</value>
+                    <description>The port of Apache status page</description>
+                </macro>
+            </macros>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS Webshop - Frontend Server 3</host>
+            <name>IAS Webshop - Frontend Server 3</name>
+            <templates>
+                <template>
+                    <name>Template App Apache by Zabbix agent</name>
+                </template>
+                <template>
+                    <name>Template Module ICMP Ping</name>
+                </template>
+                <template>
+                    <name>Template OS Linux by Zabbix agent active</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>IAS/Webshop</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS Webshop - Frontend Service</value>
+                </tag>
+            </tags>
+            <macros>
+                <macro>
+                    <macro>{$APACHE.STATUS.PORT}</macro>
+                    <value>8080</value>
+                    <description>The port of Apache status page</description>
+                </macro>
+            </macros>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS Webshop - Frontend Service</host>
+            <name>IAS Webshop - Frontend Service</name>
+            <groups>
+                <group>
+                    <name>IAS/Webshop</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>Number of unavailable frontend servers</name>
+                    <type>TRAP</type>
+                    <key>servers.unavailable</key>
+                    <delay>0</delay>
+                    <units>%</units>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=100</expression>
+                            <name>All frontend servers unavailable</name>
+                            <priority>HIGH</priority>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+    </hosts>
+</zabbix_export>

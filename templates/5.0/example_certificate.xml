@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2021-04-07T09:56:28Z</date>
+    <groups>
+        <group>
+            <name>IAS/Certificate</name>
+        </group>
+        <group>
+            <name>Services</name>
+        </group>
+    </groups>
+    <hosts>
+        <host>
+            <host>IAS PKI - Content Delivery Platform A Host 1</host>
+            <name>IAS PKI - Content Delivery Platform A Host 1</name>
+            <groups>
+                <group>
+                    <name>IAS/Certificate</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>Certificate Authority 1 Content Delivery Platform A</name>
+                    <type>TRAP</type>
+                    <key>certauth1.cdp1</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - Certificate expired</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca1_cdp1</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Certificate Authority 2 Content Delivery Platform A</name>
+                    <type>TRAP</type>
+                    <key>certauth2.cdp1</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - Certificate expired</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca2_cdp1</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS PKI - PKI Service</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS PKI - Content Delivery Platform A Host 2</host>
+            <name>IAS PKI - Content Delivery Platform A Host 2</name>
+            <groups>
+                <group>
+                    <name>IAS/Certificate</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>Certificate Authority 1 Content Delivery Platform A</name>
+                    <type>TRAP</type>
+                    <key>certauth1.cdp1</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - Certificate expired</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca1_cdp1</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Certificate Authority 2 Content Delivery Platform A</name>
+                    <type>TRAP</type>
+                    <key>certauth2.cdp1</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - Certificate expired</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca2_cdp1</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS PKI - PKI Service</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS PKI - Content Delivery Platform A Host 3</host>
+            <name>IAS PKI - Content Delivery Platform A Host 3</name>
+            <groups>
+                <group>
+                    <name>IAS/Certificate</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>Certificate Authority 1 Content Delivery Platform A</name>
+                    <type>TRAP</type>
+                    <key>certauth1.cdp1</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - Certificate expired</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca1_cdp1</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Certificate Authority 2 Content Delivery Platform A</name>
+                    <type>TRAP</type>
+                    <key>certauth2.cdp1</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - Certificate expired</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca2_cdp1</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS PKI - PKI Service</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS PKI - Content Delivery Platform B Host 1</host>
+            <name>IAS PKI - Content Delivery Platform B Host 1</name>
+            <groups>
+                <group>
+                    <name>IAS/Certificate</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>Certificate Authority 1 Content Delivery Platform B</name>
+                    <type>TRAP</type>
+                    <key>certauth1.cdp2</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - Certificate expired</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca1_cdp2</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Certificate Authority 2 Content Delivery Platform B</name>
+                    <type>TRAP</type>
+                    <key>certauth2.cdp2</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - Certificate expired</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca2_cdp2</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS PKI - PKI Service</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS PKI - Content Delivery Platform B Host 2</host>
+            <name>IAS PKI - Content Delivery Platform B Host 2</name>
+            <groups>
+                <group>
+                    <name>IAS/Certificate</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>Certificate Authority 1 Content Delivery Platform B</name>
+                    <type>TRAP</type>
+                    <key>certauth1.cdp2</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - Certificate expired</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca1_cdp2</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Certificate Authority 2 Content Delivery Platform B</name>
+                    <type>TRAP</type>
+                    <key>certauth2.cdp2</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - Certificate expired</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca2_cdp2</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS PKI - PKI Service</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS PKI - Content Delivery Platform B Host 3</host>
+            <name>IAS PKI - Content Delivery Platform B Host 3</name>
+            <groups>
+                <group>
+                    <name>IAS/Certificate</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>Certificate Authority 1 Content Delivery Platform B</name>
+                    <type>TRAP</type>
+                    <key>certauth1.cdp2</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - Certificate expired</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca1_cdp2</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Certificate Authority 2 Content Delivery Platform B</name>
+                    <type>TRAP</type>
+                    <key>certauth2.cdp2</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - Certificate expired</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca2_cdp2</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS PKI - PKI Service</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS PKI - PKI Service</host>
+            <name>IAS PKI - PKI Service</name>
+            <groups>
+                <group>
+                    <name>IAS/Certificate</name>
+                </group>
+                <group>
+                    <name>Services</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>Certificate Authority 1</name>
+                    <type>TRAP</type>
+                    <key>service.ca1</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;1</expression>
+                            <name>{HOST.HOST} - Error on Certificate Authority 1</name>
+                            <priority>HIGH</priority>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                </tag>
+                            </tags>
+                        </trigger>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - YELLOW on service Certificate Authority 1</name>
+                            <priority>WARNING</priority>
+                            <dependencies>
+                                <dependency>
+                                    <name>{HOST.HOST} - Error on Certificate Authority 1</name>
+                                    <expression>{IAS PKI - PKI Service:service.ca1.last()}&gt;1</expression>
+                                </dependency>
+                            </dependencies>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Certificate Authority 1 - Content Delivery Platform A</name>
+                    <type>TRAP</type>
+                    <key>service.ca1_cdp1</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;1</expression>
+                            <name>{HOST.HOST} - Error on Certificate Authority 1 - Content Delivery Platform A</name>
+                            <priority>AVERAGE</priority>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca1</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Certificate Authority 1 - Content Delivery Platform B</name>
+                    <type>TRAP</type>
+                    <key>service.ca1_cdp2</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;1</expression>
+                            <name>{HOST.HOST} - Error on Certificate Authority 1 - Content Delivery Platform B</name>
+                            <priority>AVERAGE</priority>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca1</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Certificate Authority 2</name>
+                    <type>TRAP</type>
+                    <key>service.ca2</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;1</expression>
+                            <name>{HOST.HOST} - Error on Certificate Authority 2</name>
+                            <priority>HIGH</priority>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                </tag>
+                            </tags>
+                        </trigger>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>{HOST.HOST} - YELLOW on service Certificate Authority 2</name>
+                            <priority>WARNING</priority>
+                            <dependencies>
+                                <dependency>
+                                    <name>{HOST.HOST} - Error on Certificate Authority 2</name>
+                                    <expression>{IAS PKI - PKI Service:service.ca2.last()}&gt;1</expression>
+                                </dependency>
+                            </dependencies>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Certificate Authority 2 - Content Delivery Platform A</name>
+                    <type>TRAP</type>
+                    <key>service.ca2_cdp1</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;1</expression>
+                            <name>{HOST.HOST} - Error on Certificate Authority 2 - Content Delivery Platform A</name>
+                            <priority>AVERAGE</priority>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca2</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Certificate Authority 2 - Content Delivery Platform B</name>
+                    <type>TRAP</type>
+                    <key>service.ca2_cdp2</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;1</expression>
+                            <name>{HOST.HOST} - Error on Certificate Authority 2 - Content Delivery Platform B</name>
+                            <priority>AVERAGE</priority>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>service.ca2</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS PKI - PKI Service</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+    </hosts>
+</zabbix_export>

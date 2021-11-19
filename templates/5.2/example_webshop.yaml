@@ -1,0 +1,255 @@
+zabbix_export:
+  version: '5.2'
+  date: '2021-03-19T10:24:56Z'
+  groups:
+    -
+      name: IAS/Webshop
+  hosts:
+    -
+      host: 'IAS Webshop - Cache Server 1'
+      name: 'IAS Webshop - Cache Server 1'
+      templates:
+        -
+          name: 'ICMP Ping'
+        -
+          name: Memcached
+      groups:
+        -
+          name: IAS/Webshop
+      interfaces:
+        -
+          interface_ref: if1
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS Webshop - Cache Service'
+      inventory_mode: DISABLED
+    -
+      host: 'IAS Webshop - Cache Server 2'
+      name: 'IAS Webshop - Cache Server 2'
+      templates:
+        -
+          name: 'ICMP Ping'
+        -
+          name: Memcached
+      groups:
+        -
+          name: IAS/Webshop
+      interfaces:
+        -
+          interface_ref: if1
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS Webshop - Cache Service'
+      inventory_mode: DISABLED
+    -
+      host: 'IAS Webshop - Cache Server 3'
+      name: 'IAS Webshop - Cache Server 3'
+      templates:
+        -
+          name: 'ICMP Ping'
+        -
+          name: Memcached
+      groups:
+        -
+          name: IAS/Webshop
+      interfaces:
+        -
+          interface_ref: if1
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS Webshop - Cache Service'
+      inventory_mode: DISABLED
+    -
+      host: 'IAS Webshop - Cache Service'
+      name: 'IAS Webshop - Cache Service'
+      groups:
+        -
+          name: IAS/Webshop
+      items:
+        -
+          name: 'Number of unavailable servers'
+          type: TRAP
+          key: servers.unavailable
+          delay: '0'
+          units: '%'
+          triggers:
+            -
+              expression: '{last()}=100'
+              name: 'All cache servers unavailable'
+              priority: HIGH
+              tags:
+                -
+                  tag: IasKey
+      tags:
+        -
+          tag: IasHost
+      inventory_mode: DISABLED
+    -
+      host: 'IAS Webshop - Database Server 1'
+      name: 'IAS Webshop - Database Server 1'
+      templates:
+        -
+          name: 'ICMP Ping'
+        -
+          name: 'MySQL by Zabbix agent'
+      groups:
+        -
+          name: IAS/Webshop
+      interfaces:
+        -
+          interface_ref: if1
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS Webshop - Database Service'
+      inventory_mode: DISABLED
+    -
+      host: 'IAS Webshop - Database Server 2'
+      name: 'IAS Webshop - Database Server 2'
+      templates:
+        -
+          name: 'ICMP Ping'
+        -
+          name: 'MySQL by Zabbix agent'
+      groups:
+        -
+          name: IAS/Webshop
+      interfaces:
+        -
+          interface_ref: if1
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS Webshop - Database Service'
+      inventory_mode: DISABLED
+    -
+      host: 'IAS Webshop - Database Service'
+      name: 'IAS Webshop - Database Service'
+      groups:
+        -
+          name: IAS/Webshop
+      items:
+        -
+          name: 'Number of unavailable servers'
+          type: TRAP
+          key: servers.unavailable
+          delay: '0'
+          units: '%'
+          triggers:
+            -
+              expression: '{last()}=100'
+              name: 'All database servers unavailable'
+              priority: HIGH
+              tags:
+                -
+                  tag: IasKey
+      tags:
+        -
+          tag: IasHost
+      inventory_mode: DISABLED
+    -
+      host: 'IAS Webshop - Frontend Server 1'
+      name: 'IAS Webshop - Frontend Server 1'
+      templates:
+        -
+          name: 'Apache by Zabbix agent'
+        -
+          name: 'ICMP Ping'
+        -
+          name: 'Linux by Zabbix agent active'
+      groups:
+        -
+          name: IAS/Webshop
+      interfaces:
+        -
+          interface_ref: if1
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS Webshop - Frontend Service'
+      macros:
+        -
+          macro: '{$APACHE.STATUS.PORT}'
+          value: '8080'
+          description: 'The port of Apache status page'
+      inventory_mode: DISABLED
+    -
+      host: 'IAS Webshop - Frontend Server 2'
+      name: 'IAS Webshop - Frontend Server 2'
+      templates:
+        -
+          name: 'Apache by Zabbix agent'
+        -
+          name: 'ICMP Ping'
+        -
+          name: 'Linux by Zabbix agent active'
+      groups:
+        -
+          name: IAS/Webshop
+      interfaces:
+        -
+          interface_ref: if1
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS Webshop - Frontend Service'
+      macros:
+        -
+          macro: '{$APACHE.STATUS.PORT}'
+          value: '8080'
+          description: 'The port of Apache status page'
+      inventory_mode: DISABLED
+    -
+      host: 'IAS Webshop - Frontend Server 3'
+      name: 'IAS Webshop - Frontend Server 3'
+      templates:
+        -
+          name: 'Apache by Zabbix agent'
+        -
+          name: 'ICMP Ping'
+        -
+          name: 'Linux by Zabbix agent active'
+      groups:
+        -
+          name: IAS/Webshop
+      interfaces:
+        -
+          interface_ref: if1
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS Webshop - Frontend Service'
+      macros:
+        -
+          macro: '{$APACHE.STATUS.PORT}'
+          value: '8080'
+          description: 'The port of Apache status page'
+      inventory_mode: DISABLED
+    -
+      host: 'IAS Webshop - Frontend Service'
+      name: 'IAS Webshop - Frontend Service'
+      groups:
+        -
+          name: IAS/Webshop
+      items:
+        -
+          name: 'Number of unavailable frontend servers'
+          type: TRAP
+          key: servers.unavailable
+          delay: '0'
+          units: '%'
+          triggers:
+            -
+              expression: '{last()}=100'
+              name: 'All frontend servers unavailable'
+              priority: HIGH
+              tags:
+                -
+                  tag: IasKey
+      tags:
+        -
+          tag: IasHost
+      inventory_mode: DISABLED

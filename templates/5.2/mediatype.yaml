@@ -1,0 +1,80 @@
+zabbix_export:
+  version: '5.2'
+  date: '2021-03-19T10:31:10Z'
+  media_types:
+    -
+      name: 'IntelliTrend Advanced Services'
+      type: WEBHOOK
+      parameters:
+        -
+          name: trigger_id
+          value: '{TRIGGER.ID}'
+        -
+          name: trigger_status
+          value: '{TRIGGER.STATUS}'
+        -
+          name: ias_url
+          value: 'http://localhost:3900/api/webhook'
+      max_sessions: '0'
+      attempts: '1'
+      script: |
+        try {
+            var logtag = '[ IntelliTrend Advanced Services Webhook ] ';
+            var params = JSON.parse(value);
+            var url = params.ias_url;
+        
+            if (!url) {
+                throw 'Missing param ias_url';
+            }
+        
+            var req = new CurlHttpRequest();
+        
+            if (typeof params.HTTPProxy === 'string' && params.HTTPProxy.trim() !== '') {
+                req.SetProxy(params.HTTPProxy);
+            }
+        
+            req.AddHeader('Content-Type: application/json');
+            
+            var body = {
+                trigger_id: parseInt(params.trigger_id),
+                trigger_status: params.trigger_status != "OK"
+            };
+        
+            var bodystr = JSON.stringify(body);
+            Zabbix.Log(4, logtag + 'Request: ' + bodystr);
+        
+            var respstr = req.Post(url, bodystr);
+            Zabbix.Log(4, logtag + 'Response: ' + respstr);
+        
+            var resp = JSON.parse(respstr);
+            if (!resp.success) {
+                throw 'API error: ' + resp.message;
+            }
+        
+            return resp.message;
+        } catch (error) {
+            Zabbix.Log(3, logtag + 'ERROR: ' + error);
+            throw 'Sending failed: ' + error;
+        }
+      message_templates:
+        -
+          event_source: TRIGGERS
+          operation_mode: PROBLEM
+        -
+          event_source: TRIGGERS
+          operation_mode: RECOVERY
+        -
+          event_source: TRIGGERS
+          operation_mode: UPDATE
+        -
+          event_source: DISCOVERY
+          operation_mode: PROBLEM
+        -
+          event_source: AUTOREGISTRATION
+          operation_mode: PROBLEM
+        -
+          event_source: INTERNAL
+          operation_mode: PROBLEM
+        -
+          event_source: INTERNAL
+          operation_mode: RECOVERY

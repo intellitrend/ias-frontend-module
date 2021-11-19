@@ -1,0 +1,145 @@
+zabbix_export:
+  version: '5.2'
+  date: '2021-04-07T10:18:42Z'
+  groups:
+    -
+      name: IAS/EMail
+  hosts:
+    -
+      host: 'IAS E-Mail Server 1'
+      name: 'IAS E-Mail Server 1'
+      groups:
+        -
+          name: IAS/EMail
+      items:
+        -
+          name: 'E-Mail Item 1'
+          type: TRAP
+          key: item1
+          delay: '0'
+          triggers:
+            -
+              expression: '{last()}>0'
+              name: 'E-Mail Trigger 1'
+              tags:
+                -
+                  tag: IasKey
+                  value: service.email
+        -
+          name: 'E-Mail Item 2'
+          type: TRAP
+          key: item2
+          delay: '0'
+          triggers:
+            -
+              expression: '{last()}>0'
+              name: 'E-Mail Trigger 2'
+              tags:
+                -
+                  tag: IasKey
+                  value: service.email
+        -
+          name: 'E-Mail Item 3'
+          type: TRAP
+          key: item3
+          delay: '0'
+          triggers:
+            -
+              expression: '{last()}>0'
+              name: 'E-Mail Trigger 3'
+              tags:
+                -
+                  tag: IasKey
+                  value: service.email
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS E-Mail Service'
+      inventory_mode: DISABLED
+    -
+      host: 'IAS E-Mail Server 2'
+      name: 'IAS E-Mail Server 2'
+      groups:
+        -
+          name: IAS/EMail
+      items:
+        -
+          name: 'E-Mail Item 1'
+          type: TRAP
+          key: item1
+          delay: '0'
+          triggers:
+            -
+              expression: '{last()}>0'
+              name: 'E-Mail Trigger 1'
+              tags:
+                -
+                  tag: IasKey
+                  value: service.email
+        -
+          name: 'E-Mail Item 2'
+          type: TRAP
+          key: item2
+          delay: '0'
+          triggers:
+            -
+              expression: '{last()}>0'
+              name: 'E-Mail Trigger 2'
+              tags:
+                -
+                  tag: IasKey
+                  value: service.email
+        -
+          name: 'E-Mail Item 3'
+          type: TRAP
+          key: item3
+          delay: '0'
+          triggers:
+            -
+              expression: '{last()}>0'
+              name: 'E-Mail Trigger 3'
+              tags:
+                -
+                  tag: IasKey
+                  value: service.email
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS E-Mail Service'
+      inventory_mode: DISABLED
+    -
+      host: 'IAS E-Mail Server 3'
+      name: 'IAS E-Mail Server 3'
+      groups:
+        -
+          name: IAS/EMail
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS E-Mail Service'
+      inventory_mode: DISABLED
+    -
+      host: 'IAS E-Mail Service'
+      name: 'IAS E-Mail Service'
+      groups:
+        -
+          name: IAS/EMail
+      items:
+        -
+          name: 'IAS Host Combined Item'
+          type: TRAP
+          key: service.email
+          delay: '0'
+          units: '%'
+          triggers:
+            -
+              expression: '{last()}>50'
+              name: 'E-Mail Service Not Available'
+              priority: WARNING
+              tags:
+                -
+                  tag: IasKey
+      tags:
+        -
+          tag: IasHost
+      inventory_mode: DISABLED

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2021-04-07T10:50:13Z</date>
+    <groups>
+        <group>
+            <name>IAS/PerHost</name>
+        </group>
+    </groups>
+    <hosts>
+        <host>
+            <host>IAS Test Per-Host - Combined Host</host>
+            <name>IAS Test Per-Host - Combined Host</name>
+            <groups>
+                <group>
+                    <name>IAS/PerHost</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>IAS Host Combined Item</name>
+                    <type>TRAP</type>
+                    <key>IAS.combined</key>
+                    <delay>0</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>%</units>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;50</expression>
+                            <name>IAS Combined Trigger</name>
+                            <priority>WARNING</priority>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS Test Per-Host - Host 1</host>
+            <name>IAS Test Per-Host - Host 1</name>
+            <groups>
+                <group>
+                    <name>IAS/PerHost</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>IAS Host 1 Item 1</name>
+                    <type>TRAP</type>
+                    <key>IAS.host1.item1</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>IAS Host 1 Trigger 1</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>IAS.combined</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>IAS Host 1 Item 2</name>
+                    <type>TRAP</type>
+                    <key>IAS.host1.item2</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>IAS Host 1 Trigger 2</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>IAS.combined</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>IAS Host 1 Item 3</name>
+                    <type>TRAP</type>
+                    <key>IAS.host1.item3</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>IAS Host 1 Trigger 3</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>IAS.combined</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS Test Per-Host - Combined Host</value>
+                </tag>
+                <tag>
+                    <tag>IasKey</tag>
+                    <value>IAS.combined</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+        <host>
+            <host>IAS Test Per-Host - Host 2</host>
+            <name>IAS Test Per-Host - Host 2</name>
+            <groups>
+                <group>
+                    <name>IAS/PerHost</name>
+                </group>
+            </groups>
+            <interfaces>
+                <interface>
+                    <interface_ref>if1</interface_ref>
+                </interface>
+            </interfaces>
+            <items>
+                <item>
+                    <name>IAS Host 2 Item 1</name>
+                    <type>TRAP</type>
+                    <key>IAS.host2.item1</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>IAS Host 2 Trigger 1</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>IAS.combined</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>IAS Host 2 Item 2</name>
+                    <type>TRAP</type>
+                    <key>IAS.host2.item2</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>IAS Host 2 Trigger 2</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>IAS.combined</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>IAS Host 2 Item 3</name>
+                    <type>TRAP</type>
+                    <key>IAS.host2.item3</key>
+                    <delay>0</delay>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;0</expression>
+                            <name>IAS Host 2 Trigger 3</name>
+                            <tags>
+                                <tag>
+                                    <tag>IasKey</tag>
+                                    <value>IAS.combined</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>IasHost</tag>
+                    <value>IAS Test Per-Host - Combined Host</value>
+                </tag>
+                <tag>
+                    <tag>IasKey</tag>
+                    <value>IAS.combined</value>
+                </tag>
+            </tags>
+            <inventory_mode>DISABLED</inventory_mode>
+        </host>
+    </hosts>
+</zabbix_export>

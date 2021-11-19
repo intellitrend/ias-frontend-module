@@ -1,0 +1,140 @@
+zabbix_export:
+  version: '5.2'
+  date: '2021-03-19T10:26:02Z'
+  groups:
+    -
+      name: IAS/PerHost
+  hosts:
+    -
+      host: 'IAS Per-Host - Combined Host'
+      name: 'IAS Per-Host - Combined Host'
+      groups:
+        -
+          name: IAS/PerHost
+      items:
+        -
+          name: 'IAS Host Combined Item'
+          type: TRAP
+          key: IAS.combined
+          delay: '0'
+          units: '%'
+          triggers:
+            -
+              expression: '{last()}>50'
+              name: 'IAS Combined Trigger'
+              priority: WARNING
+              tags:
+                -
+                  tag: IasKey
+      tags:
+        -
+          tag: IasHost
+      inventory_mode: DISABLED
+    -
+      host: 'IAS Per-Host - Host 1'
+      name: 'IAS Per-Host - Host 1'
+      groups:
+        -
+          name: IAS/PerHost
+      items:
+        -
+          name: 'IAS Host 1 Item 1'
+          type: TRAP
+          key: IAS.host1.item1
+          delay: '0'
+          triggers:
+            -
+              expression: '{last()}>0'
+              name: 'IAS Host 1 Trigger 1'
+              tags:
+                -
+                  tag: IasKey
+                  value: IAS.combined
+        -
+          name: 'IAS Host 1 Item 2'
+          type: TRAP
+          key: IAS.host1.item2
+          delay: '0'
+          triggers:
+            -
+              expression: '{last()}>0'
+              name: 'IAS Host 1 Trigger 2'
+              tags:
+                -
+                  tag: IasKey
+                  value: IAS.combined
+        -
+          name: 'IAS Host 1 Item 3'
+          type: TRAP
+          key: IAS.host1.item3
+          delay: '0'
+          triggers:
+            -
+              expression: '{last()}>0'
+              name: 'IAS Host 1 Trigger 3'
+              tags:
+                -
+                  tag: IasKey
+                  value: IAS.combined
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS Per-Host - Combined Host'
+        -
+          tag: IasKey
+          value: IAS.combined
+      inventory_mode: DISABLED
+    -
+      host: 'IAS Per-Host - Host 2'
+      name: 'IAS Per-Host - Host 2'
+      groups:
+        -
+          name: IAS/PerHost
+      items:
+        -
+          name: 'IAS Host 2 Item 1'
+          type: TRAP
+          key: IAS.host2.item1
+          delay: '0'
+          triggers:
+            -
+              expression: '{last()}>0'
+              name: 'IAS Host 2 Trigger 1'
+              tags:
+                -
+                  tag: IasKey
+                  value: IAS.combined
+        -
+          name: 'IAS Host 2 Item 2'
+          type: TRAP
+          key: IAS.host2.item2
+          delay: '0'
+          triggers:
+            -
+              expression: '{last()}>0'
+              name: 'IAS Host 2 Trigger 2'
+              tags:
+                -
+                  tag: IasKey
+                  value: IAS.combined
+        -
+          name: 'IAS Host 2 Item 3'
+          type: TRAP
+          key: IAS.host2.item3
+          delay: '0'
+          triggers:
+            -
+              expression: '{last()}>0'
+              name: 'IAS Host 2 Trigger 3'
+              tags:
+                -
+                  tag: IasKey
+                  value: IAS.combined
+      tags:
+        -
+          tag: IasHost
+          value: 'IAS Per-Host - Combined Host'
+        -
+          tag: IasKey
+          value: IAS.combined
+      inventory_mode: DISABLED
