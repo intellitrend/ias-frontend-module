@@ -53,13 +53,12 @@ class IasView extends CAction {
 	protected function doAction() {
 		$data = false;
 		$error = '';
+		$backend_url = \Modules\Ias\Module::getBackendUrl();
 
-		global $IAS;
-		if (!isset($IAS)) {
-			$error = 'IAS is unconfigured. Please edit your zabbix.conf.php.';
+		if (empty($backend_url)) {
+			$error = 'IAS is unconfigured. Please edit the manifest.json of your IAS module and fill out "backend_url" or set the environment variable IAS_BACKEND_URL.';
 		} else {
-			$ias_url = $IAS['API_URL'];
-			$ias_file_url = $ias_url . '/?embed=1';
+			$ias_file_url = $backend_url . '/?embed=1';
 			$data = @file_get_contents($ias_file_url);
 			if ($data === false) {
 				$error = 'Cannot communicate with IAS backend server.';

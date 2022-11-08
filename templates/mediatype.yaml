@@ -1,20 +1,20 @@
 zabbix_export:
-  version: '5.2'
-  date: '2021-03-19T10:31:10Z'
+  version: '6.0'
+  date: '2022-10-26T12:02:39Z'
   media_types:
     -
       name: 'IntelliTrend Advanced Services'
       type: WEBHOOK
       parameters:
         -
+          name: ivs_url
+          value: '{$IAS_URL}/api/webhook'
+        -
           name: trigger_id
           value: '{TRIGGER.ID}'
         -
           name: trigger_status
           value: '{TRIGGER.STATUS}'
-        -
-          name: ias_url
-          value: 'http://localhost:3900/api/webhook'
       max_sessions: '0'
       attempts: '1'
       script: |
@@ -27,13 +27,13 @@ zabbix_export:
                 throw 'Missing param ias_url';
             }
         
-            var req = new CurlHttpRequest();
+            var req = new HttpRequest();
         
             if (typeof params.HTTPProxy === 'string' && params.HTTPProxy.trim() !== '') {
-                req.SetProxy(params.HTTPProxy);
+                req.setProxy(params.HTTPProxy);
             }
         
-            req.AddHeader('Content-Type: application/json');
+            req.addHeader('Content-Type: application/json');
             
             var body = {
                 trigger_id: parseInt(params.trigger_id),
@@ -43,7 +43,7 @@ zabbix_export:
             var bodystr = JSON.stringify(body);
             Zabbix.Log(4, logtag + 'Request: ' + bodystr);
         
-            var respstr = req.Post(url, bodystr);
+            var respstr = req.post(url, bodystr);
             Zabbix.Log(4, logtag + 'Response: ' + respstr);
         
             var resp = JSON.parse(respstr);

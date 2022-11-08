@@ -2,7 +2,7 @@
 	"manifest_version": 1.0,
 	"id": "intellitrend_advanced_services_module",
 	"name": "Advanced Services Module",
-	"version": "5.2.6",
+	"version": "6.0.1",
 	"namespace": "ias",
 	"author": "IntelliTrend GmbH",
 	"url": "https://www.intellitrend.de/",

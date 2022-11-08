@@ -8,11 +8,9 @@ This software is licensed under the BSD-3 license.
 
 ## Requirements
 
-To use this frontend module, you also need to install the backend server. You can find the binaries in this link:
+This frontend module supports Zabbix 6.0 and 6.2.
 
-https://www.intellitrend.de/cms/files/downloads/ias_5.2.6.zip
-
-* Zabbix 5.0 to 5.4
+To use this frontend module, you also need to install the backend server. You can find the binaries on the "Releases" page in the menu on the right.
 
 ## Installation
 

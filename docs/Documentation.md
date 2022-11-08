@@ -1,10 +1,11 @@
 # IAS - IntelliTrend Advanced Services
 
-| Version | Date       | Author          | Change           |
-| ------- | ---------- | --------------- | ---------------- |
-| 1.0.0    | 2021-05-04 | Nico Bergemann  | Initial revision |
-| 1.1.0    | 2021-05-21 | Nico Bergemann  | Updated doc to cover changes for 5.1.2 |
+| Version  | Date       | Author          | Change                                  |
+| -------- | ---------- | --------------- | --------------------------------------- |
+| 1.0.0    | 2021-05-04 | Nico Bergemann  | Initial revision                        |
+| 1.1.0    | 2021-05-21 | Nico Bergemann  | Updated doc to cover changes for 5.1.2  |
 | 1.2.0    | 2021-09-20 | Nico Bergemann  | Updated doc to cover changes for 5.2.6  |
+| 1.3.0    | 2022-10-05 | Nico Bergemann  | Updated doc for release 6.x             |
 
 ## Development
 
@@ -22,6 +23,17 @@ https://www.intellitrend.de
 [TOC]
 
 # Changelog
+
+## 6.0.1
+  - Fixed a crash when background updates and web API request collide
+  - Fixed a frontend module bug when HTTP errors are displayed as "[object Object]"
+
+## 6.0.0
+  - Added support for Zabbix 6.0
+  - Added support for high-availability introduced in Zabbix 6.0
+  - Added background task to regularily send service item values to the Zabbix server
+  - Introduced global macro `{$IAS_URL}` to set the IAS backend API URL for the Zabbix frontend module and media type automatically
+  - Improved service data caching for improved performance in the frontend
 
 ## 5.2.6
   - Added missing context for item links in Zabbix 5.4, removed it from services where it's not needed
@@ -47,13 +59,13 @@ https://www.intellitrend.de
 
 # About
 
-IAS adds advanced service monitoring to Zabbix. It allows to configure complex dependancies between single hosts or groups of hosts that build a service.
+IAS adds advanced service monitoring to Zabbix. It allows configuring complex dependencies between single hosts or groups of hosts that build a service.
 
 ![image-20211124163234669](images/image-20211124163234669.png)
 
 
 
-These services are presented in Zabbix using a diagramm, that is build on the actual configuration.
+These services are presented in Zabbix using a diagram that is generated based on the current configuration.
 
 ![image-20211124163544768](images/image-20211124163544768.png)
 
@@ -61,7 +73,7 @@ These services are presented in Zabbix using a diagramm, that is build on the ac
 
 # Installation
 
-IAS - IntellitTrend Advanced Services consists of two core components:
+IAS - IntelliTrend Advanced Services consists of two core components:
 
 - Backend server services component: Communicates with Zabbix through the Zabbix-API and performs the calculations, implemented as a service
 - Web Frontend module component: Communicates with the backend component, implemented as a Zabbix Frontend module
@@ -70,7 +82,7 @@ IAS - IntellitTrend Advanced Services consists of two core components:
 
 ## Installations steps summary:
 
-1. Install the the binaries on the Zabbix server host.
+1. Install the binaries on the Zabbix server host.
 
     - Copy the intellitrend-advanced-services binaries and service
     - Grant executable permissions
@@ -125,26 +137,32 @@ The latter is the recommended way, especially when IAS is running as a daemon.
 
 For configuration, the following options are available:
 
-| YAML              | CLI                   | Type   | Purpose                                                      |
-| ----------------- | --------------------- | ------ | ------------------------------------------------------------ |
-| allowedHosts      | --allowed-hosts       | string | Comma-separated list of hosts that are allowed to access the backend web API |
-| cacheDuration     | --cache-duration      | uint16 | Reload cached Zabbix data if it's older than this many minutes after a webhook request. Set to 0 to disable cache. (default 30) |
-| graphDirection    | --graph-direction     | string | Direction of the dashboard graph. Can be 'LR', 'RL', 'TD' or 'BT' (default "LR") |
-| licensePath       | --license-path        | string | Path to license file (default "ias.lic")                     |
-| listenPort        | --listen-port         | uint16 | Webhook listen port (default 3900)                           |
-| listenIP          | --listen-ip           | string | Webhook listen address, leave empty to listen to any interface (default "")                          |
-| logLevel          | --log-level           | uint   | Log Level of the IRS-API-Server to control verbosity. Ranges from 0 (crashes only) to 6 (trace) (default 4)                  |
-| maxTreeDepth      | --max-tree-depth      | uint   | Maximum allowed depth of a service tree, starting from the topmost trigger (default 16) |
-| serviceHostTag    | --service-host-tag    | string | Tag name used to link a trigger to a service host (default "IasHost") |
-| serviceKeyTag     | --service-key-tag     | string | Tag name used to link a trigger to a service item (default "IasKey") |
-| serviceLimitTag   | --service-limit-tag   | string | Tag used to limit extend of a service tree to a specific service (default "IasVLimit") |
-| zabbixUsername    | --zabbix-username     | string | Name for the Zabbix API user (default "Admin")               |
-| zabbixPassword    | --zabbix-password     | string | Password for the Zabbix API user (default "zabbix")          |
-| zabbixServerHost  | --zabbix-server-host  | string | Zabbix server host (default "localhost")                     |
-| zabbixSkipVerify  | --zabbix-skip-verify  | bool   | Accept invalid certificates on the Zabbix API webserver      |
-| zabbixTrapperPort | --zabbix-trapper-port | uint16 | Zabbix server trapper port (default 10051)                   |
-| zabbixURL         | --zabbix-url          | string | URL to Zabbix frontend directory (default "https://zabbix.example.com/zabbix") |
+| YAML                 | CLI                       | Type   | Default   | Purpose                                                                                                       |
+| -------------------- | ------------------------  | ------ | --------- | ------------------------------------------------------------------------------------------------------------  |
+| allowedHosts         | --allowed-hosts           | string |           | Comma-separated list of hosts that are allowed to access the backend web API.                                 |
+| cronRefresh          | --cron-refresh            | string |           | Cron rule for refreshing cached data from the Zabbix server.                                                  |
+| cronSendItems        | --cron-send-items         | string |           | Cron rule for sending service item values to the Zabbix server.                                               |
+| cronUpdateHA         | --cron-update-ha          | string | LR        | Cron rule for updating the high-availability status.                                                          |
+| graphDirection       | --graph-direction         | string |           | Direction of the dashboard graph. Can be 'LR', 'RL', 'TD' or 'BT'.                                            |
+| licensePath          | --license-path            | string | ias.lic   | Path to license file.                                                                                         |
+| listenIP             | --listen-ip               | string |           | Webhook listen address, leave empty to listen to any interface.                                               |
+| listenPort           | --listen-port             | uint16 | 3900      | Webhook listen port.                                                                                          |
+| listenURL            | --listen-url              | string | 4         | HTTP URL where this IAS web server is externally reachable from the Zabbix webserver.                         |
+| logLevel             | --log-level               | uint   | 16        | Log Level of the IRS-API-Server to control verbosity. Ranges from 0 (crashes only) to 6 (trace).              |
+| maxTreeDepth         | --max-tree-depth          | uint   |           | Maximum allowed depth of a service tree, starting from the topmost trigger.                                   |
+| nodeName             | --node-name               | string |           | Name of the Zabbix server node to bind this IAS instance to. If empty, the first active node will be used.    |
+| serviceHostTag       | --service-host-tag        | string | IasHost   | Tag name used to link a trigger to a service host.                                                            |
+| serviceKeyTag        | --service-key-tag         | string | IasKey    | Tag name used to link a trigger to a service item.                                                            |
+| serviceLimitTag      | --service-limit-tag       | string | IasVLimit | Tag used to limit extend of a service tree to a specific service.                                             |
+| zabbixServerHost     | --zabbix-server-host      | string | localhost | Zabbix server host.                                                                                           |
+| zabbixServerPort     | --zabbix-server-port      | uint16 | 10051     | Zabbix server trapper port.                                                                                   |
+| zabbixWebPassword    | --zabbix-web-password     | string | zabbix    | Password for the Zabbix API user.                                                                             |
+| zabbixWebSkipVerify  | --zabbix-web-skip-verify  | bool   | false     | Accept invalid certificates on the Zabbix API webserver.                                                      |
+| zabbixWebToken       | --zabbix-web-token        | string |           | API token for Zabbix API, replaces zabbixWebUsername and zabbixWebPassword if set.                            |
+| zabbixWebURL         | --zabbix-web-url          | string |           | URL to Zabbix frontend directory.                                                                             |
+| zabbixWebUsername    | --zabbix-web-username     | string | Admin     | Name for the Zabbix API user.                                                                                 |
 
+At very least, `zabbixWebURL` and `listenURL` must be defined, which are essential to communicate between the IAS backend, Zabbix server and Zabbix frontend. The Zabbix frontend credentials typically need to be adjusted as well.
 
 ## Installation of the web frontend module
 
@@ -152,26 +170,13 @@ From the directories of the extracted IAS package, copy the module files to the 
 
 ```bash
 cp -R frontend/modules/ias /usr/share/zabbix/modules
-cd /usr/share/zabbix/modules/ias/
 ```
-
-The Zabbix configuration file then needs to have these lines added at the end:
-
-```bash
-nano /etc/zabbix/web/zabbix.conf.php
-```
-
-```php
-global $IAS;
-$IAS['API_URL'] = 'http://localhost:3900';
-```
-
-Replace "localhost" with the host name of the Zabbix server if required. It must be reachable from the frontend's network.
 
 In the Zabbix frontend, the module can now be activated using `Administration`, `General`, `GUI` by clicking `Scan directory`. An entry called `Advanced Services Module` should appear in the list. Click on the red `Disabled` link to activate it. It should switch to a green `Enabled`.
 
-Now, a new main menu entry called `Advanced Services` should appear under `Monitoring`.
+Now, a new main menu entry called `Advanced Services` should appear under `Services`. Note that the IAS backend needs to connect successfully to the Zabbix server at least once before the frontend module can be used. This is because it sets a global macro named `{$IRS_URL}`, which contains the URL by the Zabbix frontend and media type to connect to the backend.
 
+Once the global macro is set, you can click on the new menu entry to see the currently configured advanced services.
 
 # Configuration
 
@@ -441,7 +446,7 @@ Next to the name of each service, there are four badges:
 
 ![image-20211022123120814](images/image-20211022123120814.png)
 
-They contain the current number of elements configured in the service. If there's one service or trigger with a problem, its badge is marked red, otherwise it's green. If you hover with the mouse over a red badge, you see how many services or triggers are affected. If the service is incorrectly configured, all badges are gray.
+They contain the current number of elements configured in the service. If there's one service or trigger with a problem, its badge is marked red, otherwise it's green. If you hover with the mouse over a red badge, you see how many services or triggers are affected. In case the service is incorrectly configured, all badges are gray.
 
 You can increase or decrease the zoom level of the graph using the zoom buttons:
 

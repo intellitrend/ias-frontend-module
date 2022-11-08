@@ -52,10 +52,10 @@ class IasFetch extends CAction {
 	 */
 	protected function doAction() {
 		$mime = 'text/plain';
+		$backend_url = \Modules\Ias\Module::getBackendUrl();
 
-		global $IAS;
-		if (!isset($IAS)) {
-			$data = 'IAS is unconfigured. Please edit your zabbix.conf.php.';
+		if (empty($backend_url)) {
+			$error = 'IAS is unconfigured. Please edit the manifest.json of your IAS module and fill out "backend_url" or set the environment variable IAS_BACKEND_URL.';
 		} else {
 			$file = '';
 			$file_choice = isset($_GET['file']) ? $_GET['file'] : '';
@@ -74,11 +74,15 @@ class IasFetch extends CAction {
 					$mime = 'application/json';
 					$file = "/api/services?embed=1&token=$token";
 					break;
+				case 'ias.services-refresh':
+					$token = \CWebUser::$data['sessionid'];
+					$mime = 'application/json';
+					$file = "/api/services-refresh?embed=1&token=$token";
+					break;
 			}
 
 			if ($file) {
-				$ias_url = $IAS['API_URL'];
-				$ias_file_url = $ias_url . $file;
+				$ias_file_url = $backend_url . $file;
 				$data = @file_get_contents($ias_file_url);
 				if ($data === false) {
 					$data = 'Cannot communicate with IAS backend server.';
