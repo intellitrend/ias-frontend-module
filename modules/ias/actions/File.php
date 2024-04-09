@@ -1,15 +1,17 @@
 <?php declare(strict_types = 1);
 
-namespace Modules\Ias\Actions;
+namespace Modules\IAS\Actions;
 
 use CControllerResponseData;
 use CControllerResponseFatal;
 use CController as CAction;
 
+require_once "IAS.php";
+
 /**
  * Ias module action.
  */
-class IasView extends CAction {
+class File extends CAction {
 
 	/**
 	 * Initialize action. Method called by Zabbix core.
@@ -22,7 +24,11 @@ class IasView extends CAction {
 		 * modification, such as update or delete actions. In such case Session ID must be presented in the URL, so that
 		 * the URL would expire as soon as the session expired.
 		 */
-		$this->disableSIDvalidation();
+		if (method_exists($this, 'disableSIDvalidation')) {
+			$this->disableSIDvalidation();
+		} else {
+			$this->disableCsrfValidation();
+		}
 	}
 
 	/**
@@ -31,7 +37,17 @@ class IasView extends CAction {
 	 * @return bool true on success, false on error.
 	 */
 	protected function checkInput(): bool {
-		return true;
+		$fields = [
+			'file' => 'string|required|not_empty',
+		];
+
+		$ret = $this->validateInput($fields);
+
+		if (!$ret) {
+			$this->setResponse(new CControllerResponseFatal());
+		}
+
+		return $ret;
 	}
 
 	/**
@@ -51,26 +67,7 @@ class IasView extends CAction {
 	 * @return void
 	 */
 	protected function doAction() {
-		$data = false;
-		$error = '';
-		$backend_url = \Modules\Ias\Module::getBackendUrl();
-
-		if (empty($backend_url)) {
-			$error = 'IAS is unconfigured. Please edit the manifest.json of your IAS module and fill out "backend_url" or set the environment variable IAS_BACKEND_URL.';
-		} else {
-			$ias_file_url = $backend_url . '/?embed=1';
-			$data = @file_get_contents($ias_file_url);
-			if ($data === false) {
-				$error = 'Cannot communicate with IAS backend server.';
-			}
-		}
-
-		$response = new CControllerResponseData([
-			'main_block' => $data,
-			'error' => $error,
-			'theme' => getUserTheme(\CWebUser::$data),
-		]);
-		$response->setTitle(_('Advanced Services'));
-		$this->setResponse($response);
+		$data = IAS::file($this->getInput('file'));
+		$this->setResponse(new CControllerResponseData($data));
 	}
 }

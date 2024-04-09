@@ -6,6 +6,7 @@
 | 1.1.0    | 2021-05-21 | Nico Bergemann  | Updated doc to cover changes for 5.1.2  |
 | 1.2.0    | 2021-09-20 | Nico Bergemann  | Updated doc to cover changes for 5.2.6  |
 | 1.3.0    | 2022-10-05 | Nico Bergemann  | Updated doc for release 6.x             |
+| 1.4.0    | 2023-08-30 | Nico Bergemann  | Updated doc for release 6.1.0           |
 
 ## Development
 
@@ -23,6 +24,10 @@ https://www.intellitrend.de
 [TOC]
 
 # Changelog
+
+## 6.1.0
+  - Added support for Zabbix 6.4
+  - Added alternative Zabbix service linking mode where a graph is generated for each Zabbix service and where the parent services are excluded (zabbixServiceMode=1)
 
 ## 6.0.1
   - Fixed a crash when background updates and web API request collide
@@ -104,17 +109,17 @@ IAS - IntelliTrend Advanced Services consists of two core components:
 From the directories of the extracted IAS package, create the IAS system directories and copy the files on the Zabbix server host.
 
 ```bash
-mkdir -p /usr/local/intellitrend/ias/bin/
-mkdir -p /usr/local/intellitrend/ias/etc/
-cp backend/intellitrend-advanced-services /usr/local/intellitrend/ias/bin/intellitrend-advanced-services
-cp backend/intellitrend-advanced-services.service /etc/systemd/system/intellitrend-advanced-services.service
-cp backend/intellitrend-advanced-services.yaml /usr/local/intellitrend/ias/etc/intellitrend-advanced-services.yaml
+sudo mkdir -p /usr/local/intellitrend/ias/bin/
+sudo mkdir -p /usr/local/intellitrend/ias/etc/
+sudo cp backend/intellitrend-advanced-services /usr/local/intellitrend/ias/bin/intellitrend-advanced-services
+sudo cp backend/intellitrend-advanced-services.service /etc/systemd/system/intellitrend-advanced-services.service
+sudo cp backend/intellitrend-advanced-services.yaml.example /usr/local/intellitrend/ias/etc/intellitrend-advanced-services.yaml
 ```
 
 Restart systemd daemon to load new service files:
 
 ```bash
-systemctl daemon-reload
+sudo systemctl daemon-reload
 ```
 
 ### Grant executable permissions
@@ -122,8 +127,8 @@ systemctl daemon-reload
 The ``intellitrend-advanced-services`` binary has to be executable and owned by the user root.
 
 ```bash
-chmod +x /usr/local/intellitrend/ias/bin/intellitrend-advanced-services
-chown root:root /usr/local/intellitrend/ias/bin/intellitrend-advanced-services
+sudo chmod +x /usr/local/intellitrend/ias/bin/intellitrend-advanced-services
+sudo chown root:root /usr/local/intellitrend/ias/bin/intellitrend-advanced-services
 ```
 
 ### Configuration of intellitrend-advanced-services.yaml
@@ -148,7 +153,7 @@ For configuration, the following options are available:
 | listenIP             | --listen-ip               | string |           | Webhook listen address, leave empty to listen to any interface.                                               |
 | listenPort           | --listen-port             | uint16 | 3900      | Webhook listen port.                                                                                          |
 | listenURL            | --listen-url              | string | 4         | HTTP URL where this IAS web server is externally reachable from the Zabbix webserver.                         |
-| logLevel             | --log-level               | uint   | 16        | Log Level of the IRS-API-Server to control verbosity. Ranges from 0 (crashes only) to 6 (trace).              |
+| logLevel             | --log-level               | string | "info"    | loglevel to show logs at. One of 'trace', 'debug', 'info', 'warning', 'error' or 'fatal'.                     |
 | maxTreeDepth         | --max-tree-depth          | uint   |           | Maximum allowed depth of a service tree, starting from the topmost trigger.                                   |
 | nodeName             | --node-name               | string |           | Name of the Zabbix server node to bind this IAS instance to. If empty, the first active node will be used.    |
 | serviceHostTag       | --service-host-tag        | string | IasHost   | Tag name used to link a trigger to a service host.                                                            |
@@ -171,6 +176,8 @@ From the directories of the extracted IAS package, copy the module files to the 
 ```bash
 cp -R frontend/modules/ias /usr/share/zabbix/modules
 ```
+
+**Note:** If you are using Zabbix 6.4, rename the `manifest.v2.json` to `manifest.json`. This is required due to module schema changes in Zabbix 6.4 that are incompatible with previous versions.
 
 In the Zabbix frontend, the module can now be activated using `Administration`, `General`, `GUI` by clicking `Scan directory`. An entry called `Advanced Services Module` should appear in the list. Click on the red `Disabled` link to activate it. It should switch to a green `Enabled`.
 
@@ -198,7 +205,7 @@ Alternatively, it's also possible to perform the configuration steps in Zabbix m
 
 ### Importing the media type
 
-Import the file `zabbix/templates/5.2/mediatype.yaml` (Zabbix Version 5.2 or higher) or `zabbix/templates/5.0/mediatype.xml` (Zabbix Version 5.0 LTS).
+Import the file `zabbix/templates/mediatype.yaml`.
 
 If the Zabbix server and the Zabbix frontend are not on the same host, edit the imported media type "IntelliTrend Advanced Services" and change "localhost" in the ``ias_url`` parameter to the correct host. Make sure that the URI stays the same (`/api/webhook`). When ``allowedHosts`` is used, this setting needs also to be adjusted.
 

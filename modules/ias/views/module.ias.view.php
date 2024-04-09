@@ -1,8 +1,15 @@
-<link rel="stylesheet" type="text/css" href="zabbix.php?action=ias.fetch&file=ias.css" media="screen" />
-<script src="zabbix.php?action=ias.fetch&amp;file=ias.js"></script>
+<link rel="stylesheet" type="text/css" href="zabbix.php?action=ias.file&file=ias.css" media="screen" />
+<script src="zabbix.php?action=ias.file&amp;file=ias.js"></script>
 <script>
 $(function() {
-	iasRun('zabbix.php?action=ias.fetch&file=ias.services', '<?php echo $this->data['theme'] ?>');
+	let urlFunction = function(serviceid, refresh) {
+		let url = 'zabbix.php?action=ias.service';
+		url += '&serviceid=' + serviceid;
+		url += '&refresh=' + (refresh & 1);
+		return url;
+	}
+	let ias = new IAS(urlFunction, '<?php echo $this->data['theme'] ?>');
+	ias.start();
 });
 </script>
 <?php

@@ -1,6 +1,7 @@
 {
-	"manifest_version": 1.0,
+	"manifest_version": 2,
 	"id": "ias",
+	"type": "module",
 	"name": "Advanced Services Module",
 	"version": "6.2.1",
 	"namespace": "IAS",
