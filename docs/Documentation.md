@@ -25,6 +25,12 @@ https://www.intellitrend.de
 
 # Changelog
 
+## 6.2.1
+  - Added service rule text to service nodes
+  - Added support for displaying native Zabbix services without advanced service configuration attached to it
+  - Updated frontend module to include support for 6.0, 6.2 and 6.4
+  - Improved performance for listing services and loading the service graph in complex configuration environments
+
 ## 6.1.0
   - Added support for Zabbix 6.4
   - Added alternative Zabbix service linking mode where a graph is generated for each Zabbix service and where the parent services are excluded (zabbixServiceMode=1)
