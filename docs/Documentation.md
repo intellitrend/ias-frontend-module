@@ -7,6 +7,7 @@
 | 1.2.0    | 2021-09-20 | Nico Bergemann  | Updated doc to cover changes for 5.2.6  |
 | 1.3.0    | 2022-10-05 | Nico Bergemann  | Updated doc for release 6.x             |
 | 1.4.0    | 2023-08-30 | Nico Bergemann  | Updated doc for release 6.1.0           |
+| 1.5.0    | 2024-11-29 | Nico Bergemann  | Updated doc for release 7.0.0           |
 
 ## Development
 
@@ -24,6 +25,9 @@ https://www.intellitrend.de
 [TOC]
 
 # Changelog
+
+## 7.0.0
+  - Added support for Zabbix 7.0
 
 ## 6.2.1
   - Added service rule text to service nodes
@@ -148,30 +152,57 @@ The latter is the recommended way, especially when IAS is running as a daemon.
 
 For configuration, the following options are available:
 
-| YAML                 | CLI                       | Type   | Default   | Purpose                                                                                                       |
-| -------------------- | ------------------------  | ------ | --------- | ------------------------------------------------------------------------------------------------------------  |
-| allowedHosts         | --allowed-hosts           | string |           | Comma-separated list of hosts that are allowed to access the backend web API.                                 |
-| cronRefresh          | --cron-refresh            | string |           | Cron rule for refreshing cached data from the Zabbix server.                                                  |
-| cronSendItems        | --cron-send-items         | string |           | Cron rule for sending service item values to the Zabbix server.                                               |
-| cronUpdateHA         | --cron-update-ha          | string | LR        | Cron rule for updating the high-availability status.                                                          |
-| graphDirection       | --graph-direction         | string |           | Direction of the dashboard graph. Can be 'LR', 'RL', 'TD' or 'BT'.                                            |
-| licensePath          | --license-path            | string | ias.lic   | Path to license file.                                                                                         |
-| listenIP             | --listen-ip               | string |           | Webhook listen address, leave empty to listen to any interface.                                               |
-| listenPort           | --listen-port             | uint16 | 3900      | Webhook listen port.                                                                                          |
-| listenURL            | --listen-url              | string | 4         | HTTP URL where this IAS web server is externally reachable from the Zabbix webserver.                         |
-| logLevel             | --log-level               | string | "info"    | loglevel to show logs at. One of 'trace', 'debug', 'info', 'warning', 'error' or 'fatal'.                     |
-| maxTreeDepth         | --max-tree-depth          | uint   |           | Maximum allowed depth of a service tree, starting from the topmost trigger.                                   |
-| nodeName             | --node-name               | string |           | Name of the Zabbix server node to bind this IAS instance to. If empty, the first active node will be used.    |
-| serviceHostTag       | --service-host-tag        | string | IasHost   | Tag name used to link a trigger to a service host.                                                            |
-| serviceKeyTag        | --service-key-tag         | string | IasKey    | Tag name used to link a trigger to a service item.                                                            |
-| serviceLimitTag      | --service-limit-tag       | string | IasVLimit | Tag used to limit extend of a service tree to a specific service.                                             |
-| zabbixServerHost     | --zabbix-server-host      | string | localhost | Zabbix server host.                                                                                           |
-| zabbixServerPort     | --zabbix-server-port      | uint16 | 10051     | Zabbix server trapper port.                                                                                   |
-| zabbixWebPassword    | --zabbix-web-password     | string | zabbix    | Password for the Zabbix API user.                                                                             |
-| zabbixWebSkipVerify  | --zabbix-web-skip-verify  | bool   | false     | Accept invalid certificates on the Zabbix API webserver.                                                      |
-| zabbixWebToken       | --zabbix-web-token        | string |           | API token for Zabbix API, replaces zabbixWebUsername and zabbixWebPassword if set.                            |
-| zabbixWebURL         | --zabbix-web-url          | string |           | URL to Zabbix frontend directory.                                                                             |
-| zabbixWebUsername    | --zabbix-web-username     | string | Admin     | Name for the Zabbix API user.                                                                                 |
+| YAML                    | CLI                         | Type   | Default                                                      | Purpose |
+| ----------------------- | --------------------------- | ------ | ------------------------------------------------------------ | ------- |
+| allowedHosts            | --allowed-hosts             | string | Comma-separated list of hosts that are allowed to access the backend web API |         |
+| N/A                     | --config                    | string | path to the configuration file (default "/usr/local/intellitrend/ias/etc") |         |
+| N/A                     | --create-empty-config       |        | writes an empty config to standard output                    |         |
+| cronRefresh             | --cron-refresh              | string | Cron rule for refreshing cached data from the Zabbix server (default "*/15 * * * *") |         |
+| cronSendItems           | --cron-send-items           | string | Cron rule for sending service item values to the Zabbix server (default "*/5 * * * *") |         |
+| cronUpdateHA            | --cron-update-ha            | string | Cron rule for updating the high-availability status (default "* * * * *") |         |
+| enableStructuredLogging | --enable-structured-logging |        | Enables structured logging when using the 'stdout' log target, otherwise logs will always be structured |         |
+| enableTestAPI           | --enable-test-api           |        | Enables API endpoint for testing services via trapper items  |         |
+| N/A                     | --generate-lsr              |        | generates a license signing request                          |         |
+| graphDirection          | --graph-direction           | string | Direction of the dashboard graph. Can be 'LR', 'RL', 'TD' or 'BT' (default "LR") |         |
+| N/A                     | --help                      |        | shows this help page                                         |         |
+| N/A                     | --install                   |        | Configure a Zabbix server for installation                   |         |
+| license                 | --license                   | string | path to the license file to load                             |         |
+| N/A                     | --list-cli-keys             |        | lists all available command line configuration keys (alias of --help) |         |
+| N/A                     | --list-config-keys          |        | lists all available config file configuration keys           |         |
+| N/A                     | --list-environment-keys     |        | lists all available environment variable configuration keys  |         |
+| listenIP                | --listen-ip                 | string | IAS web server listen address, leave empty to listen to any interface |         |
+| listenPort              | --listen-port               | uint16 | IAS web server listen port (default 3900)                    |         |
+| listenURL               | --listen-url                | string | HTTP URL where this IAS web server is externally reachable from the Zabbix webserver. |         |
+| logFile                 | --log-file                  | string | the file to log into if logTarget is set to file (default "log.txt") |         |
+| logLevel                | --log-level                 | string | loglevel to show logs at. One of 'trace', 'debug', 'info', 'warning', 'error' or 'fatal' (default "info") |         |
+| logTarget               | --log-target                | string | the target to log into. One of 'stdout', 'syslog' or 'file' (default "stdout") |         |
+| lsrBlockDeviceName      | --lsr-block-device-name     | string | name of the block device to lock against                     |         |
+| lsrCompany              | --lsr-company               | string | the company name of the license holder                       |         |
+| lsrEmail                | --lsr-email                 | string | the email name of the license holder                         |         |
+| lsrFirstName            | --lsr-first-name            | string | the first name of the license holder                         |         |
+| lsrInterfaceName        | --lsr-interface-name        | string | name of the network interface to lock against                |         |
+| lsrLastName             | --lsr-last-name             | string | the last name of the license holder                          |         |
+| lsrPhoneNumber          | --lsr-phone-number          | string | the phone number of the license holder                       |         |
+| lsrSalute               | --lsr-salute                | string | the salutation of the license holder                         |         |
+| lsrWebsite              | --lsr-website               | string | the website of the license holder                            |         |
+| maxTreeDepth            | --max-tree-depth            | uint   | Maximum allowed depth of a service tree, starting from the topmost trigger (default 16) |         |
+| nodeName                | --node-name                 | string | Name of the Zabbix server node to bind this IAS instance to. If empty, the first active node will be used. |         |
+| serviceHostTag          | --service-host-tag          | string | Tag name used to link a trigger to a service host (default "IasHost") |         |
+| serviceKeyTag           | --service-key-tag           | string | Tag name used to link a trigger to a service item (default "IasKey") |         |
+| serviceLimitTag         | --service-limit-tag         | string | Tag used to limit extend of a service tree to a specific service (default "IasVLimit") |         |
+| N/A                     | --show-config               |        | displays the effective configuration and exits               |         |
+| syslogPriority          | --syslog-priority           | int    | priority to use if LogTarget is 'syslog' (default 6)         |         |
+| syslogTag               | --syslog-tag                | string | tag to use if LogTarget is 'syslog'                          |         |
+| N/A                     | --version                   |        | displays the software version                                |         |
+| zabbixAPITraceEnable    | --zabbix-api-trace-enable   |        | enables full tracing for the zabbix api                      |         |
+| zabbixServerHost        | --zabbix-server-host        | string | Zabbix server host. If empty, the HA node address will be used. (default "localhost") |         |
+| zabbixServerPort        | --zabbix-server-port        | uint16 | Zabbix server trapper port. If set to zero, the HA node port will be used. (default 10051) |         |
+| zabbixServiceMode       | --zabbix-service-mode       | int    | 0 = start service trees at Zabbix root services, 1 = start service trees at individual Zabbix services |         |
+| zabbixWebPassword       | --zabbix-web-password       | string | Password for the Zabbix API user (default "zabbix")          |         |
+| zabbixWebSkipVerify     | --zabbix-web-skip-verify    |        | Accept invalid certificates on the Zabbix API webserver      |         |
+| zabbixWebToken          | --zabbix-web-token          | string | API token for Zabbix API, replaces zabbixWebUsername and zabbixWebPassword if set |         |
+| zabbixWebURL            | --zabbix-web-url            | string | URL to Zabbix frontend directory                             |         |
+| zabbixWebUsername       | --zabbix-web-username       | string | Name for the Zabbix API user (default "Admin")               |         |
 
 At very least, `zabbixWebURL` and `listenURL` must be defined, which are essential to communicate between the IAS backend, Zabbix server and Zabbix frontend. The Zabbix frontend credentials typically need to be adjusted as well.
 
@@ -183,9 +214,7 @@ From the directories of the extracted IAS package, copy the module files to the 
 cp -R frontend/modules/ias /usr/share/zabbix/modules
 ```
 
-**Note:** If you are using Zabbix 6.4, rename the `manifest.v2.json` to `manifest.json`. This is required due to module schema changes in Zabbix 6.4 that are incompatible with previous versions.
-
-In the Zabbix frontend, the module can now be activated using `Administration`, `General`, `GUI` by clicking `Scan directory`. An entry called `Advanced Services Module` should appear in the list. Click on the red `Disabled` link to activate it. It should switch to a green `Enabled`.
+In the Zabbix frontend, the module can now be activated using `Administration`, `General`, `Modules` by clicking `Scan directory`. An entry called `Advanced Services Module` should appear in the list. Click on the red `Disabled` link to activate it. It should switch to a green `Enabled`.
 
 Now, a new main menu entry called `Advanced Services` should appear under `Services`. Note that the IAS backend needs to connect successfully to the Zabbix server at least once before the frontend module can be used. This is because it sets a global macro named `{$IRS_URL}`, which contains the URL by the Zabbix frontend and media type to connect to the backend.
 

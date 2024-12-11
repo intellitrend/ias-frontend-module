@@ -1,19 +1,15 @@
 zabbix_export:
   version: '6.0'
-  date: '2022-10-26T12:02:39Z'
+  date: '2024-12-06T12:22:54Z'
   media_types:
-    -
-      name: 'IntelliTrend Advanced Services'
+    - name: 'IntelliTrend Advanced Services'
       type: WEBHOOK
       parameters:
-        -
-          name: ivs_url
+        - name: ivs_url
           value: '{$IAS_URL}/api/webhook'
-        -
-          name: trigger_id
+        - name: trigger_id
           value: '{TRIGGER.ID}'
-        -
-          name: trigger_status
+        - name: trigger_status
           value: '{TRIGGER.STATUS}'
       max_sessions: '0'
       attempts: '1'
@@ -57,24 +53,17 @@ zabbix_export:
             throw 'Sending failed: ' + error;
         }
       message_templates:
-        -
-          event_source: TRIGGERS
+        - event_source: TRIGGERS
           operation_mode: PROBLEM
-        -
-          event_source: TRIGGERS
+        - event_source: TRIGGERS
           operation_mode: RECOVERY
-        -
-          event_source: TRIGGERS
+        - event_source: TRIGGERS
           operation_mode: UPDATE
-        -
-          event_source: DISCOVERY
+        - event_source: DISCOVERY
           operation_mode: PROBLEM
-        -
-          event_source: AUTOREGISTRATION
+        - event_source: AUTOREGISTRATION
           operation_mode: PROBLEM
-        -
-          event_source: INTERNAL
+        - event_source: INTERNAL
           operation_mode: PROBLEM
-        -
-          event_source: INTERNAL
+        - event_source: INTERNAL
           operation_mode: RECOVERY

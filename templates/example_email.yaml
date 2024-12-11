@@ -1,145 +1,112 @@
 zabbix_export:
-  version: '5.2'
-  date: '2021-04-07T10:18:42Z'
+  version: '6.0'
+  date: '2024-12-06T12:20:30Z'
   groups:
-    -
+    - uuid: b7ceebb376044e9ca067a74320219046
       name: IAS/EMail
   hosts:
-    -
-      host: 'IAS E-Mail Server 1'
+    - host: 'IAS E-Mail Server 1'
       name: 'IAS E-Mail Server 1'
       groups:
-        -
-          name: IAS/EMail
+        - name: IAS/EMail
       items:
-        -
-          name: 'E-Mail Item 1'
+        - name: 'E-Mail Item 1'
           type: TRAP
           key: item1
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS E-Mail Server 1/item1)>0'
               name: 'E-Mail Trigger 1'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.email
-        -
-          name: 'E-Mail Item 2'
+        - name: 'E-Mail Item 2'
           type: TRAP
           key: item2
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS E-Mail Server 1/item2)>0'
               name: 'E-Mail Trigger 2'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.email
-        -
-          name: 'E-Mail Item 3'
+        - name: 'E-Mail Item 3'
           type: TRAP
           key: item3
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS E-Mail Server 1/item3)>0'
               name: 'E-Mail Trigger 3'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.email
       tags:
-        -
-          tag: IasHost
+        - tag: IasHost
           value: 'IAS E-Mail Service'
       inventory_mode: DISABLED
-    -
-      host: 'IAS E-Mail Server 2'
+    - host: 'IAS E-Mail Server 2'
       name: 'IAS E-Mail Server 2'
       groups:
-        -
-          name: IAS/EMail
+        - name: IAS/EMail
       items:
-        -
-          name: 'E-Mail Item 1'
+        - name: 'E-Mail Item 1'
           type: TRAP
           key: item1
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS E-Mail Server 2/item1)>0'
               name: 'E-Mail Trigger 1'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.email
-        -
-          name: 'E-Mail Item 2'
+        - name: 'E-Mail Item 2'
           type: TRAP
           key: item2
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS E-Mail Server 2/item2)>0'
               name: 'E-Mail Trigger 2'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.email
-        -
-          name: 'E-Mail Item 3'
+        - name: 'E-Mail Item 3'
           type: TRAP
           key: item3
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS E-Mail Server 2/item3)>0'
               name: 'E-Mail Trigger 3'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.email
       tags:
-        -
-          tag: IasHost
+        - tag: IasHost
           value: 'IAS E-Mail Service'
       inventory_mode: DISABLED
-    -
-      host: 'IAS E-Mail Server 3'
+    - host: 'IAS E-Mail Server 3'
       name: 'IAS E-Mail Server 3'
       groups:
-        -
-          name: IAS/EMail
+        - name: IAS/EMail
       tags:
-        -
-          tag: IasHost
+        - tag: IasHost
           value: 'IAS E-Mail Service'
       inventory_mode: DISABLED
-    -
-      host: 'IAS E-Mail Service'
+    - host: 'IAS E-Mail Service'
       name: 'IAS E-Mail Service'
       groups:
-        -
-          name: IAS/EMail
+        - name: IAS/EMail
       items:
-        -
-          name: 'IAS Host Combined Item'
+        - name: 'IAS Host Combined Item'
           type: TRAP
           key: service.email
           delay: '0'
           units: '%'
           triggers:
-            -
-              expression: '{last()}>50'
+            - expression: 'last(/IAS E-Mail Service/service.email)>50'
               name: 'E-Mail Service Not Available'
               priority: WARNING
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
       tags:
-        -
-          tag: IasHost
+        - tag: IasHost
       inventory_mode: DISABLED

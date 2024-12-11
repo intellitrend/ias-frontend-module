@@ -1,355 +1,273 @@
 zabbix_export:
-  version: '5.2'
-  date: '2021-03-26T11:25:26Z'
+  version: '6.0'
+  date: '2024-12-06T12:20:13Z'
   groups:
-    -
+    - uuid: 3123b1478a9e4463893b5947c15fc503
       name: IAS/Certificate
-    -
+    - uuid: 992a0f0542384f1ea5ef51b7cf4ae6c4
       name: Services
   hosts:
-    -
-      host: 'IAS PKI - Content Delivery Platform A Host 1'
+    - host: 'IAS PKI - Content Delivery Platform A Host 1'
       name: 'IAS PKI - Content Delivery Platform A Host 1'
       groups:
-        -
-          name: IAS/Certificate
+        - name: IAS/Certificate
       items:
-        -
-          name: 'Certificate Authority 1 Content Delivery Platform A'
+        - name: 'Certificate Authority 1 Content Delivery Platform A'
           type: TRAP
           key: certauth1.cdp1
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS PKI - Content Delivery Platform A Host 1/certauth1.cdp1)>0'
               name: '{HOST.HOST} - Certificate expired'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca1_cdp1
-        -
-          name: 'Certificate Authority 2 Content Delivery Platform A'
+        - name: 'Certificate Authority 2 Content Delivery Platform A'
           type: TRAP
           key: certauth2.cdp1
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS PKI - Content Delivery Platform A Host 1/certauth2.cdp1)>0'
               name: '{HOST.HOST} - Certificate expired'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca2_cdp1
       tags:
-        -
-          tag: IasHost
+        - tag: IasHost
           value: 'IAS PKI - PKI Service'
       inventory_mode: DISABLED
-    -
-      host: 'IAS PKI - Content Delivery Platform A Host 2'
+    - host: 'IAS PKI - Content Delivery Platform A Host 2'
       name: 'IAS PKI - Content Delivery Platform A Host 2'
       groups:
-        -
-          name: IAS/Certificate
+        - name: IAS/Certificate
       items:
-        -
-          name: 'Certificate Authority 1 Content Delivery Platform A'
+        - name: 'Certificate Authority 1 Content Delivery Platform A'
           type: TRAP
           key: certauth1.cdp1
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS PKI - Content Delivery Platform A Host 2/certauth1.cdp1)>0'
               name: '{HOST.HOST} - Certificate expired'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca1_cdp1
-        -
-          name: 'Certificate Authority 2 Content Delivery Platform A'
+        - name: 'Certificate Authority 2 Content Delivery Platform A'
           type: TRAP
           key: certauth2.cdp1
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS PKI - Content Delivery Platform A Host 2/certauth2.cdp1)>0'
               name: '{HOST.HOST} - Certificate expired'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca2_cdp1
       tags:
-        -
-          tag: IasHost
+        - tag: IasHost
           value: 'IAS PKI - PKI Service'
       inventory_mode: DISABLED
-    -
-      host: 'IAS PKI - Content Delivery Platform A Host 3'
+    - host: 'IAS PKI - Content Delivery Platform A Host 3'
       name: 'IAS PKI - Content Delivery Platform A Host 3'
       groups:
-        -
-          name: IAS/Certificate
+        - name: IAS/Certificate
       items:
-        -
-          name: 'Certificate Authority 1 Content Delivery Platform A'
+        - name: 'Certificate Authority 1 Content Delivery Platform A'
           type: TRAP
           key: certauth1.cdp1
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS PKI - Content Delivery Platform A Host 3/certauth1.cdp1)>0'
               name: '{HOST.HOST} - Certificate expired'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca1_cdp1
-        -
-          name: 'Certificate Authority 2 Content Delivery Platform A'
+        - name: 'Certificate Authority 2 Content Delivery Platform A'
           type: TRAP
           key: certauth2.cdp1
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS PKI - Content Delivery Platform A Host 3/certauth2.cdp1)>0'
               name: '{HOST.HOST} - Certificate expired'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca2_cdp1
       tags:
-        -
-          tag: IasHost
+        - tag: IasHost
           value: 'IAS PKI - PKI Service'
       inventory_mode: DISABLED
-    -
-      host: 'IAS PKI - Content Delivery Platform B Host 1'
+    - host: 'IAS PKI - Content Delivery Platform B Host 1'
       name: 'IAS PKI - Content Delivery Platform B Host 1'
       groups:
-        -
-          name: IAS/Certificate
+        - name: IAS/Certificate
       items:
-        -
-          name: 'Certificate Authority 1 Content Delivery Platform B'
+        - name: 'Certificate Authority 1 Content Delivery Platform B'
           type: TRAP
           key: certauth1.cdp2
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS PKI - Content Delivery Platform B Host 1/certauth1.cdp2)>0'
               name: '{HOST.HOST} - Certificate expired'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca1_cdp2
-        -
-          name: 'Certificate Authority 2 Content Delivery Platform B'
+        - name: 'Certificate Authority 2 Content Delivery Platform B'
           type: TRAP
           key: certauth2.cdp2
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS PKI - Content Delivery Platform B Host 1/certauth2.cdp2)>0'
               name: '{HOST.HOST} - Certificate expired'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca2_cdp2
       tags:
-        -
-          tag: IasHost
+        - tag: IasHost
           value: 'IAS PKI - PKI Service'
       inventory_mode: DISABLED
-    -
-      host: 'IAS PKI - Content Delivery Platform B Host 2'
+    - host: 'IAS PKI - Content Delivery Platform B Host 2'
       name: 'IAS PKI - Content Delivery Platform B Host 2'
       groups:
-        -
-          name: IAS/Certificate
+        - name: IAS/Certificate
       items:
-        -
-          name: 'Certificate Authority 1 Content Delivery Platform B'
+        - name: 'Certificate Authority 1 Content Delivery Platform B'
           type: TRAP
           key: certauth1.cdp2
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS PKI - Content Delivery Platform B Host 2/certauth1.cdp2)>0'
               name: '{HOST.HOST} - Certificate expired'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca1_cdp2
-        -
-          name: 'Certificate Authority 2 Content Delivery Platform B'
+        - name: 'Certificate Authority 2 Content Delivery Platform B'
           type: TRAP
           key: certauth2.cdp2
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS PKI - Content Delivery Platform B Host 2/certauth2.cdp2)>0'
               name: '{HOST.HOST} - Certificate expired'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca2_cdp2
       tags:
-        -
-          tag: IasHost
+        - tag: IasHost
           value: 'IAS PKI - PKI Service'
       inventory_mode: DISABLED
-    -
-      host: 'IAS PKI - Content Delivery Platform B Host 3'
+    - host: 'IAS PKI - Content Delivery Platform B Host 3'
       name: 'IAS PKI - Content Delivery Platform B Host 3'
       groups:
-        -
-          name: IAS/Certificate
+        - name: IAS/Certificate
       items:
-        -
-          name: 'Certificate Authority 1 Content Delivery Platform B'
+        - name: 'Certificate Authority 1 Content Delivery Platform B'
           type: TRAP
           key: certauth1.cdp2
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS PKI - Content Delivery Platform B Host 3/certauth1.cdp2)>0'
               name: '{HOST.HOST} - Certificate expired'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca1_cdp2
-        -
-          name: 'Certificate Authority 2 Content Delivery Platform B'
+        - name: 'Certificate Authority 2 Content Delivery Platform B'
           type: TRAP
           key: certauth2.cdp2
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>0'
+            - expression: 'last(/IAS PKI - Content Delivery Platform B Host 3/certauth2.cdp2)>0'
               name: '{HOST.HOST} - Certificate expired'
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca2_cdp2
       tags:
-        -
-          tag: IasHost
+        - tag: IasHost
           value: 'IAS PKI - PKI Service'
       inventory_mode: DISABLED
-    -
-      host: 'IAS PKI - PKI Service'
+    - host: 'IAS PKI - PKI Service'
       name: 'IAS PKI - PKI Service'
       groups:
-        -
-          name: IAS/Certificate
-        -
-          name: Services
+        - name: IAS/Certificate
+        - name: Services
       items:
-        -
-          name: 'Certificate Authority 1'
+        - name: 'Certificate Authority 1'
           type: TRAP
           key: service.ca1
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>1'
+            - expression: 'last(/IAS PKI - PKI Service/service.ca1)>1'
               name: '{HOST.HOST} - Error on Certificate Authority 1'
               priority: HIGH
               tags:
-                -
-                  tag: IasKey
-            -
-              expression: '{last()}>0'
+                - tag: IasKey
+            - expression: 'last(/IAS PKI - PKI Service/service.ca1)>0'
               name: '{HOST.HOST} - YELLOW on service Certificate Authority 1'
               priority: WARNING
               dependencies:
-                -
-                  name: '{HOST.HOST} - Error on Certificate Authority 1'
-                  expression: '{IAS PKI - PKI Service:service.ca1.last()}>1'
+                - name: '{HOST.HOST} - Error on Certificate Authority 1'
+                  expression: 'last(/IAS PKI - PKI Service/service.ca1)>1'
               tags:
-                -
-                  tag: IasKey
-        -
-          name: 'Certificate Authority 1 - Content Delivery Platform A'
+                - tag: IasKey
+        - name: 'Certificate Authority 1 - Content Delivery Platform A'
           type: TRAP
           key: service.ca1_cdp1
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>1'
+            - expression: 'last(/IAS PKI - PKI Service/service.ca1_cdp1)>1'
               name: '{HOST.HOST} - Error on Certificate Authority 1 - Content Delivery Platform A'
               priority: AVERAGE
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca1
-        -
-          name: 'Certificate Authority 1 - Content Delivery Platform B'
+        - name: 'Certificate Authority 1 - Content Delivery Platform B'
           type: TRAP
           key: service.ca1_cdp2
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>1'
+            - expression: 'last(/IAS PKI - PKI Service/service.ca1_cdp2)>1'
               name: '{HOST.HOST} - Error on Certificate Authority 1 - Content Delivery Platform B'
               priority: AVERAGE
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca1
-        -
-          name: 'Certificate Authority 2'
+        - name: 'Certificate Authority 2'
           type: TRAP
           key: service.ca2
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>1'
+            - expression: 'last(/IAS PKI - PKI Service/service.ca2)>1'
               name: '{HOST.HOST} - Error on Certificate Authority 2'
               priority: HIGH
               tags:
-                -
-                  tag: IasKey
-            -
-              expression: '{last()}>0'
+                - tag: IasKey
+            - expression: 'last(/IAS PKI - PKI Service/service.ca2)>0'
               name: '{HOST.HOST} - YELLOW on service Certificate Authority 2'
               priority: WARNING
               dependencies:
-                -
-                  name: '{HOST.HOST} - Error on Certificate Authority 2'
-                  expression: '{IAS PKI - PKI Service:service.ca2.last()}>1'
+                - name: '{HOST.HOST} - Error on Certificate Authority 2'
+                  expression: 'last(/IAS PKI - PKI Service/service.ca2)>1'
               tags:
-                -
-                  tag: IasKey
-        -
-          name: 'Certificate Authority 2 - Content Delivery Platform A'
+                - tag: IasKey
+        - name: 'Certificate Authority 2 - Content Delivery Platform A'
           type: TRAP
           key: service.ca2_cdp1
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>1'
+            - expression: 'last(/IAS PKI - PKI Service/service.ca2_cdp1)>1'
               name: '{HOST.HOST} - Error on Certificate Authority 2 - Content Delivery Platform A'
               priority: AVERAGE
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca2
-        -
-          name: 'Certificate Authority 2 - Content Delivery Platform B'
+        - name: 'Certificate Authority 2 - Content Delivery Platform B'
           type: TRAP
           key: service.ca2_cdp2
           delay: '0'
           triggers:
-            -
-              expression: '{last()}>1'
+            - expression: 'last(/IAS PKI - PKI Service/service.ca2_cdp2)>1'
               name: '{HOST.HOST} - Error on Certificate Authority 2 - Content Delivery Platform B'
               priority: AVERAGE
               tags:
-                -
-                  tag: IasKey
+                - tag: IasKey
                   value: service.ca2
       tags:
-        -
-          tag: IasHost
+        - tag: IasHost
           value: 'IAS PKI - PKI Service'
       inventory_mode: DISABLED
