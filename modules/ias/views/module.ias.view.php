@@ -4,7 +4,9 @@
 $(function() {
 	let urlFunction = function(serviceid, refresh) {
 		let url = 'zabbix.php?action=ias.service';
-		url += '&serviceid=' + serviceid;
+		if (serviceid != -1) {
+			url += '&serviceid=' + serviceid;
+		}
 		url += '&refresh=' + (refresh & 1);
 		return url;
 	}

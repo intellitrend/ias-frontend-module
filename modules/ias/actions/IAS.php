@@ -42,8 +42,7 @@ class IAS {
 
     public static function service($serviceid, $refresh) {
         $filePath = '/api/';
-
-        if ($serviceid == 0) {
+        if ($serviceid === null) {
             $filePath .= 'services?';
         } else {
             $filePath .= 'service/' . $serviceid . '?';

@@ -38,7 +38,7 @@ class Service extends CAction {
 	 */
 	protected function checkInput(): bool {
 		$fields = [
-			'serviceid' => 'uint64|required',
+			'serviceid' => 'uint64|',
 			'refresh' => 'required|in 0,1',
 		];
 

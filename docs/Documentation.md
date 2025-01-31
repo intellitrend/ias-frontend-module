@@ -8,6 +8,7 @@
 | 1.3.0    | 2022-10-05 | Nico Bergemann  | Updated doc for release 6.x             |
 | 1.4.0    | 2023-08-30 | Nico Bergemann  | Updated doc for release 6.1.0           |
 | 1.5.0    | 2024-11-29 | Nico Bergemann  | Updated doc for release 7.0.0           |
+| 1.6.0    | 2025-31-01 | Nico Bergemann  | Updated doc for release 7.0.1           |
 
 ## Development
 
@@ -25,6 +26,10 @@ https://www.intellitrend.de
 [TOC]
 
 # Changelog
+
+## 7.0.1
+  - Fixed trigger actions not updating the cached trigger state in the backend correctly
+  - Fixed native Zabbix service state not being updated correctly when loaded from the backend cache
 
 ## 7.0.0
   - Added support for Zabbix 7.0
