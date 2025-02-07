@@ -8,7 +8,7 @@ This software is licensed under the BSD-3 license.
 
 ## Requirements
 
-This frontend module supports Zabbix 6.0, 6.2 and 6.4.
+This frontend module supports Zabbix 6.0, 6.2, 6.4 and 7.0.
 
 To use this frontend module, you also need to install the backend server. You can find the binaries on the "Releases" page in the menu on the right.
 

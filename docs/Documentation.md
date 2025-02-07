@@ -27,6 +27,9 @@ https://www.intellitrend.de
 
 # Changelog
 
+## 7.1.0
+  - Added option for automatic service status refresh in the GUI
+
 ## 7.0.1
   - Fixed trigger actions not updating the cached trigger state in the backend correctly
   - Fixed native Zabbix service state not being updated correctly when loaded from the backend cache
