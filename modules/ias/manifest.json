@@ -3,7 +3,7 @@
 	"id": "ias",
 	"type": "module",
 	"name": "Advanced Services Module",
-	"version": "7.0.0",
+	"version": "0.0.0",
 	"namespace": "IAS",
 	"author": "IntelliTrend GmbH",
 	"url": "https://www.intellitrend.de/",
